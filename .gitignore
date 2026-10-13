@@ -1,0 +1,31 @@
+# Secrets — never commit
+.env
+secrets/
+*.pem
+*.key
+ig*.json
+cookies*
+sessions/
+
+# Runtime data (real leads, personal data)
+db/
+export/
+backups/
+logs/
+*.csv
+*.xlsx
+grids/
+
+# Eval: gold set is built from real profiles and stays local
+evals/data/private/
+evals/out/
+
+# Tooling
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.worktrees/
+.superpowers/
+deploy/local/bin/
+.DS_Store

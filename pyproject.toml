@@ -1,0 +1,10 @@
+[project]
+name = "llm-lead-qualifier"
+version = "1.0.0"
+description = "LLM-assisted B2B lead qualification: cheap rules, a two-stage Claude cascade and a human in the loop, with evals."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+
+[tool.setuptools.packages.find]
+include = ["leadgen*", "evals*"]

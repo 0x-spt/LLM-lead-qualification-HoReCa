@@ -1,0 +1,376 @@
+{
+ "overall": {
+  "rules": {
+   "n": 330,
+   "tp": 90,
+   "fp": 45,
+   "fn": 15,
+   "tn": 180,
+   "precision": 0.6666666666666666,
+   "recall": 0.8571428571428571,
+   "f1": 0.75,
+   "accuracy": 0.8181818181818182,
+   "precision_ci": [
+    0.5835063424706964,
+    0.7406040106223247
+   ],
+   "recall_ci": [
+    0.7775987921491644,
+    0.9114759733816619
+   ]
+  },
+  "llm_text": {
+   "n": 330,
+   "tp": 105,
+   "fp": 90,
+   "fn": 0,
+   "tn": 135,
+   "precision": 0.5384615384615384,
+   "recall": 1.0,
+   "f1": 0.7000000000000001,
+   "accuracy": 0.7272727272727273,
+   "precision_ci": [
+    0.4684223785996646,
+    0.6070145521029651
+   ],
+   "recall_ci": [
+    0.9647046717431569,
+    0.9999999999999998
+   ]
+  },
+  "cascade": {
+   "n": 330,
+   "tp": 90,
+   "fp": 0,
+   "fn": 15,
+   "tn": 225,
+   "precision": 1.0,
+   "recall": 0.8571428571428571,
+   "f1": 0.923076923076923,
+   "accuracy": 0.9545454545454546,
+   "precision_ci": [
+    0.9590629315783191,
+    0.9999999999999999
+   ],
+   "recall_ci": [
+    0.7775987921491644,
+    0.9114759733816619
+   ]
+  }
+ },
+ "by_slice": {
+  "chef": {
+   "n": 15,
+   "label": "accept",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "chef_latin_bio": {
+   "n": 15,
+   "label": "accept",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "chef_trained_abroad": {
+   "n": 15,
+   "label": "accept",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "pastry_chef": {
+   "n": 15,
+   "label": "accept",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "chef_mixed_feed": {
+   "n": 15,
+   "label": "accept",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "chef_born_abroad": {
+   "n": 15,
+   "label": "accept",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "chef_bio_booking_cta": {
+   "n": 15,
+   "label": "accept",
+   "rules": 0,
+   "llm": 15,
+   "cascade": 0,
+   "llm_n": 15
+  },
+  "abroad_ukraine": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 0,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "abroad_ukraine_flag": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 0,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "abroad_kazakhstan": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 0,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "abroad_uzbekistan": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 0,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "abroad_georgia": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 0,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "venue_names_its_chef": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "venue_account": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "no_role": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 0,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "courses_teacher": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "catering_home_baking": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "private_chef": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "former_chef": {
+   "n": 15,
+   "label": "reject",
+   "rules": 15,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "consultant_no_venue": {
+   "n": 15,
+   "label": "reject",
+   "rules": 0,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "food_blogger": {
+   "n": 15,
+   "label": "reject",
+   "rules": 0,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  },
+  "travel_chef": {
+   "n": 15,
+   "label": "reject",
+   "rules": 0,
+   "llm": 15,
+   "cascade": 15,
+   "llm_n": 15
+  }
+ },
+ "errors": [
+  {
+   "nick": "syn_pavel.golubev.cook",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_dmitriy.zaytsev.cook",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_pavel.orlov.cook",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_natalya.kozlova.cook",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_sergey.sokolov_chef",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_ilya.golubev71",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_mariya.pavlova.cook",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_ilya.vinogradov",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_ekaterina.zaytseva",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_ilya.belov_chef",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_mariya.vinogradova_chef",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_roman.volkov",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_pavel.pavlov",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_yuliya.kozlova.cook",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  },
+  {
+   "nick": "syn_dmitriy.semenov",
+   "slice": "chef_bio_booking_cta",
+   "label": "accept",
+   "rules": "reject",
+   "rules_why": "аккаунт заведения называет своего шефа",
+   "llm": "accept",
+   "cascade": "reject"
+  }
+ ]
+}

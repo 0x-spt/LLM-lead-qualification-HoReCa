@@ -1,0 +1,64 @@
+x-app: &app
+  build: .
+  env_file: [.env]
+  restart: unless-stopped
+  depends_on: [archive-db]
+
+services:
+  archive-db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: leadgen_archive
+      POSTGRES_USER: leadgen
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - archive:/var/lib/postgresql/data
+
+  workers:
+    <<: *app
+    command: [python, -m, leadgen.ops.workers]
+    environment:
+      LEADGEN_GRIDS_DIR: /data/grids
+    volumes:
+      - grids:/data/grids
+      - ./export:/data/export
+
+  registry:
+    <<: *app
+    command: [python, -m, leadgen.sources.registry]
+
+  grader:
+    <<: *app
+    command: [python, -m, leadgen.llm.grader, loop]
+    environment:
+      LEADGEN_GRIDS_DIR: /data/grids
+    volumes:
+      - grids:/data/grids
+      - claude:/root/.claude
+
+  bot:
+    <<: *app
+    command: [python, -m, leadgen.ops.bot]
+    environment:
+      LEADGEN_GRIDS_DIR: /data/grids
+      LEADGEN_CONTACTS_CSV: /data/export/contacts.csv
+    volumes:
+      - grids:/data/grids
+      - ./secrets:/secrets:ro
+      - ./export:/data/export
+
+  backup:
+    <<: *app
+    command: [sh, -c, "while true; do python -m leadgen.core.backup; sleep 86400; done"]
+    environment:
+      LEADGEN_BACKUP_DIR: /backups
+      LEADGEN_CONTACTS_CSV: /data/export/contacts.csv
+    volumes:
+      - ./backups:/backups
+      - ./export:/data/export
+
+volumes:
+  archive:
+  grids:
+  claude:
