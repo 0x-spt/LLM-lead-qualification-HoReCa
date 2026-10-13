@@ -27,7 +27,8 @@ Google Sheets, split by sales department.
 | Cost spread between lead sources | **190×** (12 vs. 2,284 profiles read per lead) |
 | Tests | 770 (pytest, real Postgres) |
 
-Full methodology and tables: [docs/RESULTS.md](docs/RESULTS.md).
+Full methodology and tables: [docs/RESULTS.md](docs/RESULTS.md) (Russian: [docs/METRICS.ru.md](docs/METRICS.ru.md)).
+A file-by-file code guide (in Russian): [docs/CODE_MAP.ru.md](docs/CODE_MAP.ru.md).
 
 ---
 

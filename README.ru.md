@@ -27,7 +27,9 @@ Google Таблицы с разбивкой по отделам продаж.
 | Разброс цены лида между источниками | **190×** (12 против 2 284 прочитанных профилей на лид) |
 | Тесты | 770 (pytest, настоящий Postgres) |
 
-Методика и полные таблицы — в [docs/RESULTS.md](docs/RESULTS.md) (на английском).
+Все метрики и показатели с пояснениями — в [docs/METRICS.ru.md](docs/METRICS.ru.md)
+(английская версия — [docs/RESULTS.md](docs/RESULTS.md)). Подробное описание кода, что за что отвечает, —
+в [docs/CODE_MAP.ru.md](docs/CODE_MAP.ru.md).
 
 ---
 
@@ -175,7 +177,7 @@ tests/       770 тестов на настоящем временном Postgre
 deploy/      сервисы docker-compose и запуск через launchd на одном Mac
 ```
 
-Начинать чтение стоит с `llm/grader.py`, `qualify/vetting.py`, `qualify/passport.py`, `ops/workers.py` и
+Подробно по каждому файлу — в [docs/CODE_MAP.ru.md](docs/CODE_MAP.ru.md). Начинать чтение стоит с `llm/grader.py`, `qualify/vetting.py`, `qualify/passport.py`, `ops/workers.py` и
 `sources/websearch.py`.
 
 ## Запуск
