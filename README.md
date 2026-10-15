@@ -12,7 +12,7 @@ HoReCa suppliers. These people live on Instagram, mixed in with millions of food
 consultants, venue accounts and people who changed jobs last year.
 
 This system reads ~59,000 profiles a day from 15+ sources. It rejects 98.4% of them with free rules, sends
-the remaining ~0.5% to Claude, routes the doubtful ones to a person in Telegram, and exports the result to
+the remaining ~0.6% to Claude, routes the doubtful ones to a person in Telegram, and exports the result to
 Google Sheets, split by sales department.
 
 | Headline numbers (15 days in production) | |
