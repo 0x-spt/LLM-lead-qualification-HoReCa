@@ -11,19 +11,19 @@ The client sells premium tableware to restaurants. Its sales team wanted a stead
 HoReCa suppliers. These people live on Instagram, mixed in with millions of food bloggers, home bakers,
 consultants, venue accounts and people who changed jobs last year.
 
-This system reads ~50,000 profiles a day from 15+ sources. It rejects 98.7% of them with free rules, sends
+This system reads ~59,000 profiles a day from 15+ sources. It rejects 98.4% of them with free rules, sends
 the remaining ~0.5% to Claude, routes the doubtful ones to a person in Telegram, and exports the result to
 Google Sheets, split by sales department.
 
 | Headline numbers (15 days in production) | |
 |---|---|
-| Profiles read → leads delivered | 781,751 → **1,100** (≈73 per day) |
-| Share of profiles that ever reach an LLM | **0.53%** (vision model: 0.2%) |
-| LLM calls per delivered lead | **≈0.8** (848 calls in total) |
-| Precision of accepted leads vs. client labels | **85%** (95% CI 81–88), n = 541 |
+| Profiles read → leads delivered | 887,136 → **1,100** (≈73 per day) |
+| Share of profiles that ever reach an LLM | **0.62%** (vision model: 0.21%) |
+| LLM calls per delivered lead | **≈0.92** (1,016 calls in total) |
+| Precision of accepted leads vs. client labels | **83%** (95% CI 79–86), n = 595 |
 | Recall of the cheap text stage | **95%** (92–97). It filters without losing leads |
-| Schema-valid structured output | 99.1% text, 99.8% vision |
-| Doubtful verdicts routed to a human | 38% of vision verdicts (confidence < 0.75) |
+| Schema-valid structured output | 99.2% text, 99.8% vision |
+| Unsure vision verdicts routed to a human | 9% (177 of 1,902) |
 | Cost spread between lead sources | **190×** (12 vs. 2,284 profiles read per lead) |
 | Tests | 770 (pytest, real Postgres) |
 
@@ -52,7 +52,7 @@ flowchart LR
     X[(Archive DB<br/>every rejection + reason)]
 
     R & W & A & G --> Q --> T --> F
-    F -- 98.7% --> X
+    F -- 98.4% --> X
     F --> L1
     L1 -- reject --> X
     L1 --> L2
@@ -106,7 +106,7 @@ flowchart LR
 
 | Decision | Why |
 |---|---|
-| **Rules before models** | 98.7% of profiles are decided for free. The LLM budget goes to the 0.5% where judgement matters. |
+| **Rules before models** | 98.4% of profiles are decided for free. The LLM budget goes to the 0.6% where judgement matters. |
 | **Cascade: small text model → large vision model** | Haiku filters on text at ~10 profiles per call before Sonnet spends an image call. Text-stage recall is 95%, so the filter rarely loses a lead. |
 | **3×4 post grid as one image** | The visual bar ("plated dishes, not infographics") is judged from 12 posts in one input instead of 12 images. |
 | **JSON-schema structured output** | `--json-schema` with enums for verdicts. Unknown handles in a response are ignored, a response with no known handle stops the loop, and a failed call is logged and never turned into a verdict. |
@@ -124,7 +124,7 @@ There are two complementary eval suites.
 
 `evals/build_gold.py` → `evals/predict.py` → `evals/run.py`
 
-- **Gold set.** The client's last decision per profile in the bot (541 profiles).
+- **Gold set.** The client's last decision per profile in the bot (595 profiles).
 - **Per-component scoring.** Rules, the text stage, the vision stage and the whole system each get
   precision, recall and F1 with **Wilson 95% intervals**. On a few hundred examples a single point
   estimate is misleading.

@@ -686,9 +686,9 @@ def rejected(stores, nick):
 
 
 def test_foreign_workplace_in_handles_is_rejected(env):
-    """Рустам: «Brand-chef @sorrel1.tashkent … @moscow.syncafe.uz» ушёл в Москву из-за «moscow» в нике."""
+    """Шеф из Ташкента: «Brand-chef @sorrel1.tashkent … @moscow.cafe1.uz» ушёл в Москву из-за «moscow» в нике."""
     stores, aid = env
-    task = candidate(stores, nick='north_oak_', bio='Brand-chef @sorrel1.tashkent @khinkali.nino @moscow.syncafe.uz')
+    task = candidate(stores, nick='north_oak_', bio='Brand-chef @sorrel1.tashkent @basil2.rest @moscow.cafe1.uz')
     vetting.handle_vet(stores, FeedTransport(feed=feed()), aid, task)
     assert main_row(stores, 'north_oak_') is None
     assert 'вне РФ' in rejected(stores, 'north_oak_')['reason'] and 'Ташкент' in rejected(stores, 'north_oak_')['reason']
@@ -736,11 +736,11 @@ def test_mutual_accounts_of_one_person_are_a_duplicate(env):
 
 
 def test_person_name_is_never_read_as_a_city(env):
-    """«Artem Orlov» давал город Артём (Приморье) и отдел НСК."""
+    """«Artem Petrov» давал город Артём (Приморье) и отдел НСК."""
     stores, aid = env
     geo.upsert_city(stores.main, 'Артём', 'Восток', 'НСК')
     task = candidate(stores, nick='kestrel.lumen.chef', bio='Chef @fiorentina_nn')
-    stores.archive.execute("UPDATE candidates SET full_name = 'Artem Orlov' WHERE nick = 'kestrel.lumen.chef'")
+    stores.archive.execute("UPDATE candidates SET full_name = 'Artem Petrov' WHERE nick = 'kestrel.lumen.chef'")
     vetting.handle_vet(stores, FeedTransport(feed=feed()), aid, task)
     assert main_row(stores, 'kestrel.lumen.chef')['city'] == 'Нижний Новгород'
     task = candidate(stores, nick='artem.two', pk='78', bio='Шеф-повар, Москва')

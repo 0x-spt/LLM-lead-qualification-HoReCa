@@ -17,7 +17,7 @@ CAP_AT = '2026-10-08 14:46'   # from this moment on, an own account gets no more
 
 # Client's review of the export (2026-10-06 to 2026-10-09): every one of these cases the system must catch.
 REGRESSION = [
-    ('north_oak_', 'вне РФ', 'Ташкент: @sorrel1.tashkent, «moscow» внутри @moscow.syncafe.uz'),
+    ('north_oak_', 'вне РФ', 'Ташкент: @sorrel1.tashkent, «moscow» внутри @moscow.cafe1.uz'),
     ('pepper.chef', 'вне РФ', 'Казахстан: @willow1.kz'),
     ('chef_basil', 'вне РФ', 'Актобе: @harbor1_aktobe'),
     ('ginger1_hazel1_indigo1', 'вне РФ', 'Таллин'),

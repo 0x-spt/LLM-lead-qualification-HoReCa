@@ -8,54 +8,56 @@ stay on the operator's machine (`evals/data/private/`, git-ignored).
 
 | Stage | Profiles in | Decided here | Cost per profile |
 |---|---|---|---|
-| Profiles read from Instagram | 781,751 | — | 1 HTTP request |
-| Free rules (role in bio, venue account, format stop-list, abroad, …) | 781,751 | 771,490 rejected (98.7%) | 0 LLM calls |
-| LLM text stage (Haiku, 25 profiles per call) | 4,181 | 2,574 rejected, 1,191 pass, 397 unsure | ≈0.10 calls |
-| LLM vision stage (Sonnet, 12-post grid, 5 per call) | 1,527 | 800 rejected, 581 accept, 140 unsure | ≈0.27 calls |
-| Human in the loop (Telegram) | 595 decisions | 469 accept, 126 reject | 1 tap |
+| Profiles read from Instagram | 887,136 | — | 1 HTTP request |
+| Free rules (role in bio, venue account, format stop-list, abroad, …) | 887,136 | 873,024 rejected (98.4%) | 0 LLM calls |
+| LLM text stage (Haiku, up to 25 profiles per call) | 5,516 | 3,883 rejected, 1,393 pass, 509 unsure¹ | ≈0.09 calls |
+| LLM vision stage (Sonnet, 12-post grid, up to 5 per call) | 1,839 | 1,066 rejected, 659 accept, 177 unsure¹ | ≈0.27 calls |
+| Human in the loop (Telegram) | 637 decisions | 500 accept, 137 reject¹ | 1 tap |
 | **Delivered to sales (Google Sheets)** | **1,100 leads** | ≈73 per day | |
 
-- **0.53%** of the profiles that were read reach the LLM at all. The vision model sees **0.2%**.
-- 848 LLM calls in total, which is **≈1.3 delivered leads per LLM call**.
-- Structured-output reliability: 99.1% (text) and 99.8% (vision) of calls returned schema-valid JSON.
+¹ Verdict breakdown covers the whole `verdicts` table, including re-grades, so the sums slightly exceed the unique profiles and delivered leads in the 29.09–13.10 window.
+
+- **0.62%** of the profiles that were read reach the LLM at all. The vision model sees **0.21%**.
+- 1,016 LLM calls in total, which is **≈1 delivered lead per LLM call**.
+- Structured-output reliability: 99.2% (text) and 99.8% (vision) of calls returned schema-valid JSON.
   Failed calls are logged, and the batch is retried on the next run. A failed call never becomes a verdict.
-- 38% of vision verdicts fall below the 0.75 confidence threshold and are routed to a human
+- 9% of vision verdicts (177 of 1,902) are "unsure" and are routed to a human
   instead of being auto-decided.
 
-The largest rejection reasons: "no target role in the bio" (717,970), "venue account found while walking a
-venue's followings" (19,352), "role disabled for this department" (13,879), "role not in the bio after
-normalisation" (4,204), "venue account, not a person" (1,783).
+The largest rejection reasons: "no target role in the bio" (821,094), "venue account found while walking a
+venue's followings" (20,055), "role disabled for this department" (13,879), "role not in the bio after
+normalisation" (4,685), "no sign of Russia: bio not in Russian, no geotags in Russia" (2,456).
 
 ## 2. Decision quality against human labels
 
-Gold set: **541 profiles** with the client's final decision in the bot (436 accept, 105 reject).
+Gold set: **595 profiles** with the client's final decision in the bot (472 accept, 123 reject).
 The grader's verdicts are frozen *before* the human decision, so the human never sees and confirms the model.
 The set is biased toward hard cases, because the bot receives disputed profiles, rejects queued for review, and a
 sample of auto-accepts. Treat these numbers as a lower bound for the full stream.
 
 | Component | Coverage | Precision (accept) | Recall (accept) | F1 | False accepts | Lost leads |
 |---|---|---|---|---|---|---|
-| Free rules | 100% | 82% (95% CI 78–85) | 88% (85–91) | 85% | 84 | 52 |
-| LLM text stage | 79% | 79% (74–82) | 95% (92–97) | 86% | 86 | 18 |
-| LLM vision stage | 65% | 84% (80–88) | 89% (84–92) | 86% | 47 | 32 |
-| **Whole system** | 100% | **85% (81–88)** | 77% (73–81) | 81% | 58 | 101 |
+| Free rules | 100% | 81% (95% CI 77–84) | 90% (87–92) | 85% | 102 | 49 |
+| LLM text stage | 80% | 77% (73–81) | 95% (92–97) | 85% | 103 | 19 |
+| LLM vision stage | 66% | 82% (78–86) | 88% (84–91) | 85% | 59 | 37 |
+| **Whole system** | 100% | **83% (79–86)** | 78% (74–81) | 81% | 74 | 104 |
 
 Reading the table:
 - The text stage is tuned for **recall** (95%). It is a cheap filter whose job is not to lose leads before the
   expensive vision model.
 - The system trades recall for precision on purpose. A false accept costs a salesperson a wasted call, while a
   lost lead is replaced from the stream within hours.
-- 112 system rejects were overturned by the client, and the current rules now accept 80 of them. That is the
+- 119 system rejects were overturned by the client, and the current rules now accept 90 of them. That is the
   feedback loop working.
 
 Where it is still wrong (system vs. human):
 
 | Human | System | Decided by | Cases |
 |---|---|---|---|
-| reject | accept | accepted by all stages | 58 |
-| accept | reject | rules | 52 |
-| accept | reject | vision stage | 31 |
-| accept | reject | text stage | 18 |
+| reject | accept | accepted by all stages | 74 |
+| accept | reject | rules | 49 |
+| accept | reject | vision stage | 36 |
+| accept | reject | text stage | 19 |
 
 ### Regression set
 

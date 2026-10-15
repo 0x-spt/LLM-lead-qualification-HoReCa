@@ -65,7 +65,7 @@ def test_rules_prediction_offline(stores):
     case = lambda bio, cat='': {'nick': 'x', 'bio': bio, 'full_name': 'Иван Петров', 'category': cat}
     assert predict.rules(stores.main, enabled, case('Шеф-повар @fiorentina_nn, Москва'))[0] == 'accept'
     assert predict.rules(stores.main, enabled, case('Люблю путешествовать'))[0] == 'reject'
-    d, why = predict.rules(stores.main, enabled, case('Brand-chef @sorrel1.tashkent @moscow.syncafe.uz'))
+    d, why = predict.rules(stores.main, enabled, case('Brand-chef @sorrel1.tashkent @moscow.cafe1.uz'))
     assert d == 'reject' and 'Ташкент' in why
     d, why = predict.rules(stores.main, enabled, case('сами ловим.сами готовим место, где пахнет морем  бренд-шеф @maple1'))
     assert d == 'reject' and 'заведени' in why

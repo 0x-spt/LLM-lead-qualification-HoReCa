@@ -3,8 +3,8 @@ reviewed an export.
 
 Tashkent, Astana, Kostanay, Aktobe, Karaganda, Tallinn had been ending up as "Москва":
 the city used to be searched across the whole bio text together with @handles (a chef
-from Tashkent with @moscow.syncafe.uz produced "Москва") and across the full name
-("Artem Orlov" -> city Артём). Here the city comes
+from Tashkent with @moscow.cafe1.uz produced "Москва") and across the full name
+("Artem Petrov" -> city Артём). Here the city comes
 only from the bio's prose; "abroad" comes from city/country names, domains and flags,
 including inside @handles (@harbor1_aktobe, @willow1.kz); duplicates are accounts that
 reference each other, or the same name at the same venue.
@@ -55,7 +55,7 @@ def prose(text):
 
 
 def bio_city(conn, bio):
-    """City from the bio's prose. The full name isn't checked here: "Artem Orlov" is
+    """City from the bio's prose. The full name isn't checked here: "Artem Petrov" is
     a person, not the city Артём."""
     return geo.find_city(conn, prose(bio))
 

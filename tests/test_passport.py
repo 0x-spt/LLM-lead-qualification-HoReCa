@@ -3,9 +3,9 @@
 Артём Белов дважды с двух аккаунтов. Шапки — настоящие, из таблицы."""
 from leadgen.qualify import geo, handlers, names, passport
 
-AZIZ = ('Brand-chef @sorrel1.tashkent @khinkali.nino @khinkali.nino.jemchug @indigo.gastrobar '
-        '@moscow.syncafe.uz     Консалтинг| Обновление меню')
-FEDOR = '🔪Chef  @_cedar_restaurant_ 🍔Brand Chef @willow1.kz 🍖Ambassador  @terrameat.kz 🍔Concept Chef  @san_seven'
+CHEF_TASHKENT = ('Brand-chef @sorrel1.tashkent @basil2.rest @basil2.rest.sea @indigo1.gastrobar '
+                 '@moscow.cafe1.uz     Консалтинг| Обновление меню')
+CHEF_KZ = '🔪Chef  @_cedar_restaurant_ 🍔Brand Chef @willow1.kz 🍖Ambassador  @meadow1.kz 🍔Concept Chef  @saffron2'
 SERGEY = 'Шеф повар @harbor1_aktobe Шеф повар @ulydala_brewery @sable2'
 NIKITA = ('Ex Head-Chef Synone ( Tallinn🇪🇪) Syntwo ( Lugano 🇨🇭) Synthree ( Moscow 🇷🇺) Private Chef 🏴‍☠️'
           '........Owner@ PELMEN🥟🇪🇪')
@@ -20,16 +20,16 @@ def cities(stores):
 
 def test_city_is_not_taken_from_handles_or_person_name(stores):
     cities(stores)
-    assert passport.bio_city(stores.main, AZIZ) is None                 # @moscow.syncafe.uz — не Москва
-    assert passport.bio_city(stores.main, 'Chef @alder1') is None  # «Artem Orlov» не смотрим
+    assert passport.bio_city(stores.main, CHEF_TASHKENT) is None        # @moscow.cafe1.uz — не Москва
+    assert passport.bio_city(stores.main, 'Chef @alder1') is None  # «Artem Petrov» не смотрим
     assert passport.bio_city(stores.main, 'Шеф-повар, Тюмень @bar_x') == 'Тюмень'
     assert passport.bio_city(stores.main, 'Brand Chef @oak2_pine2_quartz2  Дербент • Ростов-на-Дону📍') in ('Дербент', 'Ростов-на-Дону')
 
 
 def test_abroad_by_handles_domains_flags(stores):
     cities(stores)
-    assert passport.abroad(stores.main, AZIZ) == 'Ташкент'
-    assert passport.abroad(stores.main, FEDOR) == 'Казахстан'
+    assert passport.abroad(stores.main, CHEF_TASHKENT) == 'Ташкент'
+    assert passport.abroad(stores.main, CHEF_KZ) == 'Казахстан'
     assert passport.abroad(stores.main, SERGEY) == 'Актобе'
     assert passport.abroad(stores.main, NIKITA) == 'Таллин'             # Tallinn + Lugano против Moscow
     assert passport.abroad(stores.main, 'Шеф @kestrel2_restoran 🇷🇺 Тула') is None

@@ -426,7 +426,7 @@ def handle_vet(stores, transport, account_id, task):
         if kind == 'ru' and venue_city:
             venue = dict(venue, city=venue_city)
     # city comes from the venue, the profile's business fields, or the bio's prose; not
-    # from @handles or the full name ("moscow" in @moscow.syncafe.uz, "Artem Orlov" -> city
+    # from @handles or the full name ("moscow" in @moscow.cafe1.uz, "Artem Petrov" -> city
     # Артём — 2026-10-06)
     city = ((venue or {}).get('city') or cand['city_name'] or passport.bio_city(stores.main, cand['bio']) or '')
     if not city:
